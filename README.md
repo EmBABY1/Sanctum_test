@@ -1,66 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1- Create new Laravel Project (Laravel +8).
+2- Use SQLite Database.
+3- Make authentication system using Sanctum.
+a. /register endpoint that receives and validates the following:
+i. Name.
+ii. Phone number.
+iii. Password.
+b. /login endpoint.
+c. Both of the previous endpoint should return the user data with access token.
+d. Generate random 6-digits verification code for every user.
+e. Send the code for every user (Just log it).
+f. Make an endpoint that verifies the code sent to the user.
+g. Only verified accounts can login to the system.
+4- Create tags API resource.
+a. Authenticated users can view all tags.
+b. Authenticated users can store new tags.
+c. Authenticated users can update single tag.
+d. Authenticated users can delete single tag.
+e. Tags only has names and the name should be a unique one.
+5- Create posts API resource.
+a. Authenticated users can view only their posts.
+b. Authenticated users can store new posts.
+c. Authenticated users can view a single post of their posts.
+d. Authenticated users can update single post of their posts.
+e. Authenticated users can delete (Softly) single post of their posts.
+f. Authenticated users can view their deleted posts.
+g. Authenticated users can restore one of their deleted posts.
+h. Posts have the following data:
+i. Title. [Required, Maximum Characters: 255]
+ii. Body. [Required, String]
+iii. Cover image. [Required only when storing, Optional when updating, Image]
+iv. Pinned. [Required, Boolean]
+v. One or more tags. (Hint: Many-to-many Relationship).
+i. Pinned Posts should appear first for every user.
+j. All the received data for storing and updating posts should be validated.
+6- Create a Job that runs daily and force-deletes all softly-deleted posts for more than 30 days.
+7- Create a job that runs every six hours and makes HTTP Request to this end endpoint and log only the results
+object in the response. https://randomuser.me/api/
+8- Make /stats API endpoint.
+a. That endpoint should return the following:
+i. Number of all users.
+ii. Number of all posts.
+iii. Number of users with 0 posts.
+b. The results should be cached and update with every update to the related models (User and Post)
